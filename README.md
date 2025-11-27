@@ -28,8 +28,11 @@ rmdir JavaBackendBanking → Deletes the now-empty inner folder.
 
 
 ## 🚀 Next Steps
-- Add a `/hello` endpoint to test Spring Boot routing.
-- Connect PostgreSQL in `application.properties`.
-- Create model classes for User and Account.
+
+- Create model classes for User and Account. Finished User I am working on Account right now. 
 - Implement data persistence using JPA.
-- Refactor or connect your Swing frontend to the backend.
+- Refactor or connect your Swing frontend to the backend. STILL TODO
+
+Notes: A foreign key is a column in one table that stores the primary key from another table — it links related data across tables, showing “this record belongs to that record.” For instance in the user table user_id
+is the primary key. It is at its "home" so to speak. In the accounts table it is the foreign key visually in the last column. It links that account itself to the specific user, but it isn't the primary key. It is the guest key
+that bridges the gap or connects the information across the tables. 

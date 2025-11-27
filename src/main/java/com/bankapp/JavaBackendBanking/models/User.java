@@ -1,18 +1,33 @@
 package com.bankapp.JavaBackendBanking.models;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "users")
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false, unique = true)
     private String email;
+
+    @Column(nullable = false)
     private String password;
+
     private String accountType;
     private double balance;
 
     //Constructor
 
+    //JPA needs a no args constructor
+
+    public User() {}
+
     public User(Long id, String email, String password, String accountType, double balance) {
         this.id = id;
-        this.email = email;;
+        this.email = email;
         this.password = password;
         this.accountType = accountType;
         this.balance = balance; 
