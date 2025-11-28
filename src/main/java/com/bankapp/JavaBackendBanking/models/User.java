@@ -25,8 +25,7 @@ public class User {
 
     public User() {}
 
-    public User(Long id, String email, String password, String accountType, double balance) {
-        this.id = id;
+    public User(String email, String password, String accountType, double balance) {
         this.email = email;
         this.password = password;
         this.accountType = accountType;

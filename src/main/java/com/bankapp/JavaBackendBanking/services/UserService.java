@@ -15,6 +15,7 @@ public class UserService {
     private final UserRepository userRepository;
 
     //Constructor with Autowired. 
+    // HERE WE INJECT THE REPOSITORY IN THE CONSTRUCTOR OF USERSERVICE SO THE SERVICE CAN USE ITS FUNCTIONALITY WITHOUT HAVING TO INCLUDE THE DATABASE CODE ITSELF.
     @Autowired // Autowired is no long needed for SpringBoot 3+. It does it automatically for classes with only one constructor but I will leave it because I am learning. 
     public UserService (UserRepository userRepository) {
         this.userRepository = userRepository;
