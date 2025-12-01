@@ -21,4 +21,8 @@ public interface TransactionRepository extends JpaRepository<Transaction,Long> {
 
     //Get the latest transaction for the account
     Transaction findTopByAccountIdOrderByTimestampDesc(Long accountId);
+
+    // Get the transaction based on the account type. Easier for customer to query off of "CHECKING" rather 
+    List<Transaction> findByAccount_AccountType(String accountType); 
 }
+

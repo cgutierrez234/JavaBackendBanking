@@ -1,7 +1,11 @@
 package com.bankapp.JavaBackendBanking.models;
 
 import jakarta.persistence.*;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Table(name="Transactions")
@@ -11,7 +15,9 @@ public class Transaction {
      @GeneratedValue(strategy=GenerationType.IDENTITY)
      private Long id;
 
-     @Column(nullable=false)
+    // This makes it so once the timestamp is created, because it has to be, it is immutable. IMMUTABLE I SAY! 
+    @CreationTimestamp
+     @Column(nullable = false, updatable = false)
      private LocalDateTime timestamp;
 
      private double amount;
@@ -20,12 +26,6 @@ public class Transaction {
      @ManyToOne
      @JoinColumn(name="account_id", nullable=false)
      private Account account;
-
-     // This automatically adds the timestamp on creation to each transaction upon creation. 
-     @PrePersist
-     protected void onCreate() {
-        timestamp = LocalDateTime.now();
-     }
 
      // JPA needs a no args constructor!
      public Transaction() {}
@@ -66,5 +66,9 @@ public class Transaction {
 
      public void setAccount(Account account) {
         this.account = account;
+     }
+
+     public void setTimestamp(LocalDateTime timestamp) {
+      this.timestamp = timestamp;
      }
 }
