@@ -6,7 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.bankapp.JavaBackendBanking.repositories.AccountRepository;
 
+import com.bankapp.JavaBackendBanking.exceptions.AccountNotFoundException;
+
 import java.util.List;
+
+
 
 
 @Service
@@ -22,6 +26,13 @@ public class AccountService {
 
     public Account addAccount(Account account) {
         return accountRepository.save(account);
+    }
+
+    public Account getAccountById(Long id) {
+        return accountRepository.findById(id)
+        .orElseThrow(() -> new AccountNotFoundException("Account with ID: " + id + " not found" )); // By default findById() returns Optional<Account> because Spring Data JPA's repository methods are designed to avoid null pointer exceptions. 
+        // Instead of returning a plain account, which would be null if the record didn't exist, it wraps thevalue in an Optional<Account> - can hold a value or be empty.  The above utilized method unwraps it safely. 
+        // If repo method starts with findBy . . it usually returns an Optional<T>
     }
 
     public List<Account> getAllAccounts() {

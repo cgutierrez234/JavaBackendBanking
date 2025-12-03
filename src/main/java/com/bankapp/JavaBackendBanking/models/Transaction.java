@@ -27,6 +27,10 @@ public class Transaction {
      @JoinColumn(name="account_id", nullable=false)
      private Account account;
 
+     @ManyToOne
+     @JoinColumn(name="target_account_id")
+     private Account targetAccount;
+
      // JPA needs a no args constructor!
      public Transaction() {}
 
@@ -52,6 +56,10 @@ public class Transaction {
 
      public LocalDateTime getTimestamp() {
         return timestamp;
+     }
+
+     public Account getTargetAccount() {
+      return targetAccount;
      }
 
      //SETTERS
