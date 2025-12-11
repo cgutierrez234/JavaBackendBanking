@@ -32,6 +32,11 @@ public class GlobalExceptionHandler  {
         return buildErrorResponse(HttpStatus.BAD_REQUEST, ex.getMessage());
     }
 
+    @ExceptionHandler(LoanNotFoundException.class)
+    public ResponseEntity<Map<String,Object>> handleLoanNotFound(LoanNotFoundException ex) {
+        return buildErrorResponse(HttpStatus.NOT_FOUND, ex.getMessage());
+    }
+
     // Helper method to build the JSON response
     public ResponseEntity<Map<String, Object>> buildErrorResponse(HttpStatus status, String message) {
         Map<String, Object> body = new HashMap<>();
